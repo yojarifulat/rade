@@ -1,0 +1,19 @@
+import librosa
+
+# Загрузка аудиофайла
+audio, sample_rate = librosa.load('audio.wav')
+
+# Извлечение характеристик аудио
+chroma = librosa.feature.chroma_stft(audio, sr=sample_rate)
+mfcc = librosa.feature.mfcc(audio, sr=sample_rate)
+
+# Визуализация спектрограммы
+librosa.display.specshow(chroma, sr=sample_rate, x_axis='time', y_axis='chroma')
+plt.colorbar()
+plt.title('Chromagram')
+plt.show()
+
+librosa.display.specshow(mfcc, sr=sample_rate, x_axis='time', y_axis='mel')
+plt.colorbar()
+plt.title('MFCC')
+plt.show()
